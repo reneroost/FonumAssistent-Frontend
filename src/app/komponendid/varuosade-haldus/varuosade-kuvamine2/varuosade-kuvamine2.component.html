@@ -1,0 +1,92 @@
+<div class="kast">
+    <p *ngFor="let esindus of esindused" class="item">{{ esindus.nimiLyhend }} - {{ esindus.nimi }}
+    </p>
+</div>
+<table class="table" *ngIf="varuosad?.length > 0 && !onTombamas">
+    <thead class="thead-dark">
+        <tr>
+            <th>Tootja</th>
+            <th>Mudel</th>
+            <th>Varuosa liik</th>
+            <th>Kogus</th>
+            <th *ngFor="let esindus of esindused">{{ esindus.nimiLyhend }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let varuosa of varuosad">
+            <td class="align-middle">{{ varuosa.tootja }}</td>
+            <td class="align-middle">{{ varuosa.mudel }}</td>
+            <td class="align-middle">{{ varuosa.varuosaLiik }}</td>
+            <td class="align-middle">{{ varuosa.kogus }}</td>
+            <td class="align-middle">{{ varuosa.kogusKristiineKeskuses }}</td>
+            <td class="align-middle">{{ varuosa.kogusViruKeskuses }}</td>
+            <td class="align-middle">{{ varuosa.kogusLounaKeskuses }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="varuosad?.length == 0 && !onTombamas" class="alert alert-warning" role="alert">
+    Varuosi ei ole.
+</div>
+
+<div *ngIf="onTombamas" class="alert alert-info">
+    Laadin andmeid...
+</div>
+
+
+<ul>
+    <li>
+        <span class="mr-2">Tooteid lehel</span>
+        <select (change)="uuendaLeheSuurust($event.target.value)">
+            <option>10</option>
+            <option selected="true">20</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+    </li>
+    <li>
+        <ngb-pagination [(page)]="leheNumber" [pageSize]="leheSuurus"
+            [collectionSize]="artikleidKokku" (pageChange)="kasitleVaruosaNimekiri()" [maxSize]=5
+            [boundaryLinks]="true">
+        </ngb-pagination>
+    </li>
+    <li>
+        <span class="mr-2">Tooteid lehel</span>
+        <select (change)="uuendaLeheSuurust($event.target.value)">
+            <option selected="true">10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+    </li>
+</ul>
+
+
+
+<!-- 
+<div class="footer-pagination">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-8" style="padding-left: 30%">
+                    <ngb-pagination [(page)]="leheNumber" [pageSize]="leheSuurus"
+                        [collectionSize]="artikleidKokku" (pageChange)="kasitleVaruosaNimekiri()"
+                        [maxSize]=5 [boundaryLinks]="true">
+                    </ngb-pagination>
+                </div>
+                <div class="col-md-4" style="text-align: right;">
+                    <span class="mr-2">Tooteid lehel</span>
+                    <select (change)="uuendaLeheSuurust($event.target.value)">
+                        <option>2</option>
+                        <option>5</option>
+                        <option selected="true">10</option>
+                        <option>20</option>
+                        <option>50</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

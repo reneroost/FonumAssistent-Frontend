@@ -1,0 +1,27 @@
+<div class="kast">
+    <p *ngFor="let esindus of esindused" class="item">{{ esindus.nimiLyhend }} - {{ esindus.nimi }}
+    </p>
+</div>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Tootja</th>
+            <th>Mudel</th>
+            <th>Varuosa liik</th>
+            <th>Kogus</th>
+            <th *ngFor="let esindus of esindused">{{ esindus.nimiLyhend }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let varuosa of varuosad">
+            <td class="align-middle">{{ varuosa.tootja }}</td>
+            <td class="align-middle">{{ varuosa.mudel }}</td>
+            <td class="align-middle">{{ varuosa.varuosaLiik }}</td>
+            <td class="align-middle">{{ varuosa.kogus }}</td>
+            <td class="align-middle">{{ varuosa.kogusKristiineKeskuses }}</td>
+            <td class="align-middle">{{ varuosa.kogusViruKeskuses }}</td>
+            <td class="align-middle">{{ varuosa.kogusLounaKeskuses }}</td>
+        </tr>
+    </tbody>
+</table>

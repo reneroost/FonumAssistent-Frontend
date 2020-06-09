@@ -1,0 +1,44 @@
+.legend {
+    display: inline;
+    font-family: Karla;
+}
+
+.kast {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: 1px solid #e3f2fd;
+}
+
+.item {
+    flex: 1 1 auto;
+    border: 1px solid #ffebee;
+    font-family: Karla;
+    font-size: 24;
+}
+
+li:first-child {
+    margin-right: auto;
+    visibility: hidden;
+}
+
+li:last-child {
+    margin-left: auto;
+}
+
+li {
+    display: flex;
+    margin: 1px;
+    padding: 5px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

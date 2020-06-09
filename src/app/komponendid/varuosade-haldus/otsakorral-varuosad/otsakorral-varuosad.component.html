@@ -1,0 +1,56 @@
+<h4 id="kriitiliselt-otsakorral-pealkiri">Kriitiselt otsakorral (<4)</h4>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Tootja</th>
+            <th>Mudel</th>
+            <th>Varuosa liik</th>
+            <th>Kogus</th>
+            <th *ngFor="let esindus of esindused">{{ esindus.nimiLyhend }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let varuosa of kriitiliseltOtsakorralVaruosad">
+            <td class="align-middle">{{ varuosa.tootja }}</td>
+            <td class="align-middle">{{ varuosa.mudel }}</td>
+            <td class="align-middle">{{ varuosa.varuosaLiik }}</td>
+            <td class="align-middle">{{ varuosa.kogus }}</td>
+            <td class="align-middle">{{ varuosa.kogusKristiineKeskuses }}</td>
+            <td class="align-middle">{{ varuosa.kogusViruKeskuses }}</td>
+            <td class="align-middle">{{ varuosa.kogusLounaKeskuses }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="kriitiliseltOtsakorralVaruosad?.length == 0" class="alert alert-warning" role="alert">
+    Kriitiliselt otsakorral varuosi ei ole.
+</div>
+
+<h4 id="leebelt-otsakorral-pealkiri">Otsakorral (<7)</h4>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Tootja</th>
+            <th>Mudel</th>
+            <th>Varuosa liik</th>
+            <th>Kogus</th>
+            <th *ngFor="let esindus of esindused">{{ esindus.nimiLyhend }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let varuosa of leebeltOtsakorralVaruosad">
+            <td class="align-middle">{{ varuosa.tootja }}</td>
+            <td class="align-middle">{{ varuosa.mudel }}</td>
+            <td class="align-middle">{{ varuosa.varuosaLiik }}</td>
+            <td class="align-middle">{{ varuosa.kogus }}</td>
+            <td class="align-middle">{{ varuosa.kogusKristiineKeskuses }}</td>
+            <td class="align-middle">{{ varuosa.kogusViruKeskuses }}</td>
+            <td class="align-middle">{{ varuosa.kogusLounaKeskuses }}</td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="leebeltOtsakorralVaruosad?.length == 0" class="alert alert-warning" role="alert">
+    Otsakorral varuosi ei ole.
+</div>

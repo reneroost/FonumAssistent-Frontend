@@ -1,0 +1,51 @@
+<form class="form-horizontal" #postForm="ngForm"
+    (ngSubmit)="onLooUusVaruosaArtikkel(postForm.value)">
+    <div class="form-group row">
+        <label for="tootja" class="control-label col-sm-3">Tootja</label>
+        <select class="form-control col-sm-9" id="tootja" requred ngModel name="tootja">
+            <option>Apple</option>
+            <option>Huawei</option>
+            <option>LG</option>
+            <option>Nokia</option>
+            <option>Samsung</option>
+            <option>Xiaomi</option>
+        </select>
+    </div>
+    <div class="form-group row">
+        <label for="mudel" class="control-label col-sm-3">Mudel</label>
+        <input type="text" class="form-control col-sm-9" id="mudel" required ngModel name="mudel" />
+    </div>
+    <div class="form-group row">
+        <label for="varuosaLiik" class="control-label col-sm-3">Varuosa liik</label>
+        <select class="form-control col-sm-9" id="varuosaLiik" requred ngModel name="varuosaLiik">
+            <option>Aku</option>
+            <option>Akukaas</option>
+            <option>Ekraan</option>
+            <option>Esikaamera</option>
+            <option>Kaitseklaas</option>
+            <option>Kaitsekorpus</option>
+            <option>Kuular</option>
+            <option>Kõlar</option>
+            <option>Laadimispesa</option>
+            <option>Sõrmejäljelugeja</option>
+            <option>Tagakaamera</option>
+        </select>
+    </div>
+    <div class="form-group row">
+        <label for="artikliHind" class="control-label col-sm-3">Artikli hind</label>
+        <input type="text" class="form-control col-sm-9" id="artikliHind" required ngModel
+            name="artikliHind" />
+    </div>
+    <div class="form-group row">
+        <label for="teenuseHind" class="control-label col-sm-3">Teenuse hind</label>
+        <input type="text" class="form-control col-sm-9" id="teenuseHind" required ngModel
+            name="teenuseHind" />
+    </div>
+    <div class="form-group row">
+        <label for="kogus" class="control-label col-sm-3">Kogus</label>
+        <input type="text" class="form-control col-sm-9" id="kogus" required ngModel name="kogus" />
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid">
+        Lisa varuosa
+    </button>
+</form>

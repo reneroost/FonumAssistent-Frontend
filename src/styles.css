@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.btn-primary {
+    background-color: #008ACD !important;
+}
+
+.btn-primary:hover {
+    background-color: black !important;
+}
+
+.active-link {
+    font-weight: bold;
+    background-color: #008ACD;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

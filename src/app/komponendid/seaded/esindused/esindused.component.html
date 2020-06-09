@@ -1,0 +1,72 @@
+<div class="main container-fluid">
+    <table *ngIf="esindused?.length > 0 && !onTombamas" class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Esindus</th>
+                <th>Lühend</th>
+                <th>Asukoht</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let esindus of esindused">
+                <td>{{ esindus.nimi }}</td>
+                <td>{{ esindus.nimiLyhend }}</td>
+                <td>{{ esindus.asukoht }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="esindused?.length <= 0 && !onTombamas" class="alert alert-warning" role="alert">
+        Esindusi ei ole.
+    </div>
+
+    <div *ngIf="onTombamas" class="alert alert-info">
+        Laadin andmeid...
+    </div>
+
+    <span id="esinduseLisamineSilt">Esinduse lisamine</span>
+    <button (click)="naitaPeidaLyliti()" class="btn btn-secondary" id="naitaPeidaNupp">
+        {{ nupuNimi }}
+    </button>
+    <ng-container *ngIf="naita">
+        <div id="lisaEsindusVorm">
+            <form #postForm="ngForm" (ngSubmit)="onLooUusEsindus(postForm.value)">
+                <div class="form-group row">
+                    <label for="nimi" class="control-label col-sm-3">Nimi</label>
+                    <input type="text" class="form-control col-sm-9" id="mudel" required ngModel
+                        name="nimi" />
+                </div>
+                <div class="form-group row">
+                    <label for="nimiLyhend" class="control-label col-sm-3">Nime lühend</label>
+                    <input type="text" class="form-control col-sm-9" id="nimiLyhend" required
+                        ngModel name="nimiLyhend" />
+                </div>
+                <div class="form-group row">
+                    <label for="asukoht" class="control-label col-sm-3">Asukoht</label>
+                    <input type="text" class="form-control col-sm-9" id="asukoht" required ngModel
+                        name="asukoht" />
+                </div>
+                <div class="form-group row">
+                    <label for="nimiSisseytlev" class="control-label col-sm-3">Nimi
+                        sisseütlev</label>
+                    <input type="text" class="form-control col-sm-9" id="nimiSisseytlev" required
+                        ngModel name="nimiSisseytlev" />
+                </div>
+                <div class="form-group row">
+                    <label for="nimiSeesytlev" class="control-label col-sm-3">Nimi seesütlev</label>
+                    <input type="text" class="form-control col-sm-9" id="nimiSeesytlev" required
+                        ngModel name="nimiSeesytlev" />
+                </div>
+                <div class="form-group row">
+                    <label for="nimiSeestytlev" class="control-label col-sm-3">Nimi
+                        seestütlev</label>
+                    <input type="text" class="form-control col-sm-9" id="nimiSeestytlev" required
+                        ngModel name="nimiSeestytlev" />
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]="postForm.invalid">
+                    Lisa esindus
+                </button>
+            </form>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,13 @@
+<div class="d-flex">
+    <!-- KÜLGRIBA -->
+    <div class="sidenav">
+        <a [routerLink]="['esindused']" routerLinkActive='active-link'>Esindused</a>
+        <a [routerLink]="['muud-seaded']" routerLinkActive='active-link'>Muud seaded</a>
+
+    </div>
+    <!-- /KÜLGRIBA -->
+
+    <!-- PÕHISISU -->
+    <router-outlet></router-outlet>
+    <!-- /PÕHISISU -->
+</div>

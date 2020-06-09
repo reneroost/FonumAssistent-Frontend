@@ -1,0 +1,20 @@
+.legend {
+    display: inline;
+    font-family: Karla;
+}
+
+.kast {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: 1px solid #e3f2fd;
+}
+
+.item {
+    flex: 1 1 auto;
+    border: 1px solid #ffebee;
+    font-family: Karla;
+    font-size: 24;
+}

@@ -1,0 +1,13 @@
+.items select {
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    padding-left: 15px;
+    margin-bottom: 10px;
+    outline: 0;
+    margin-left: 5px;
+}
+
+.kinnita-nupp {
+    margin: auto;
+}

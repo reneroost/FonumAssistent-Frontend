@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Varuosa } from 'src/app/mudel/varuosa';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { Esindus } from 'src/app/mudel/esindus';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
+import { Varuosa } from 'src/app/mudel/varuosa';
+import { VaruosaService } from 'src/app/teenused/varuosa.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-varuosade-kuvamine',
@@ -13,31 +14,49 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./varuosade-kuvamine.component.css']
 })
 export class VaruosadeKuvamineComponent implements OnInit {
-  
+
   varuosad: Varuosa[];
   esindused: Esindus[];
 
-  constructor(private http: HttpClient) { }
+  leheNumber = 1;
+  leheSuurus = 10;
+  artikleidKokku = 70;
+
+  onTombamas = false;
+
+  constructor(private varuosaTeenus: VaruosaService,
+              private marsruut: ActivatedRoute,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.saaVaruosad();
     this.saaEsindused();
+    this.marsruut.paramMap.subscribe(() => {
+      this.kasitleVaruosaNimekiri();
+    });
   }
 
-  saaVaruosad() {
-    this.http
-      .get<{ [key: string]: Varuosa }>('http://localhost:8080/varuosad')
-      .pipe(map(vastuseAndmed => {
-        const varuosadeList: Varuosa[] = [];
-        for (const key in vastuseAndmed) {
-          if (vastuseAndmed.hasOwnProperty(key)) {
-            varuosadeList.push({ ...vastuseAndmed[key], id: key });
-          }
-        }
-        return varuosadeList;
-      })).subscribe(andmed => {
-        this.varuosad = andmed;
-      });
+  kasitleVaruosaNimekiri() {
+    this.onTombamas = true;
+    this.varuosaTeenus.getVaruosaNimekiriPaginate(
+      this.leheNumber - 1,
+      this.leheSuurus)
+      .subscribe(this.varuosadJsonMuutujateks());
+    this.onTombamas = false;
+  }
+
+  varuosadJsonMuutujateks() {
+    return andmed => {
+      this.varuosad = andmed._embedded.varuosad;
+      this.leheNumber = andmed.page.number + 1;
+      this.leheSuurus = andmed.page.size;
+      this.artikleidKokku = andmed.page.totalElements;
+    };
+  }
+
+  uuendaLeheSuurust(leheSuurus: number) {
+    this.leheSuurus = leheSuurus;
+    this.leheNumber = 1;
+    this.kasitleVaruosaNimekiri();
   }
 
   saaEsindused() {
@@ -55,5 +74,4 @@ export class VaruosadeKuvamineComponent implements OnInit {
         this.esindused = andmed;
       });
   }
-
 }

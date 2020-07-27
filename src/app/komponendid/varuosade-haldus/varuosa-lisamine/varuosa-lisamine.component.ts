@@ -21,9 +21,6 @@ export class VaruosaLisamineComponent implements OnInit {
       .post(
         'http://localhost:8080/lisaVaruosa', 
         varuosaAndmed
-      )
-      .subscribe(vastuseAndmed => {
-        // console.log(vastuseAndmed);
-      });
+      ).subscribe();
   }
 }

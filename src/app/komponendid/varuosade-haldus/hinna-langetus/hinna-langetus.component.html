@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-sm-8">
+        <h3 id="kriitiliselt-otsakorral-pealkiri">
+            Soovitatav hinnalangetus
+            (vanus {{ piirVanus }}+ kuud)
+        </h3>
+    </div>
+    <div class="col-sm-4">
+        <div class="float-right">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-sm-3">
+                    <label>Muuda vanusepiiri:</label>
+                </div>
+                <div class="col-sm-2">
+                    <button (click)="vahendaVanusePiirmaara()" class="btn btn-danger btn-sm">
+                        -1
+                    </button>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" size="1" [value]='piirVanus'
+                        (input)='muudaVanusePiirmaara($event)'>
+                </div>
+                <div class="col-sm-2">
+                    <button (click)="suurendaVanusePiirmaara()" class="btn btn-success btn-sm">
+                        +1
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped table-borderless tabel-stiil">
+    <thead>
+        <tr>
+            <th>Mudel</th>
+            <th>Väljatuleku aeg</th>
+            <th>Varuosa liik</th>
+            <th>Kogus</th>
+            <th>Varuosa hind</th>
+            <th>Teenuse hind </th>
+            <th>Hinnasoovitus</th>
+            <th>Muuda hinda</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let varuosa of vanemadVaruosad; let i = index" [attr.data-index]="i">
+            <td class="align-middle">{{ varuosa.mudel }}</td>
+            <td class="align-middle">{{ varuosa.valjatulekuAeg }}</td>
+            <td class="align-middle">{{ varuosa.varuosaLiik }}</td>
+            <td class="align-middle">{{ varuosa.kogus }}</td>
+            <td class="align-middle">{{ varuosa.artikliHind | currency : 'EUR' }}</td>
+            <td class="align-middle">{{ varuosa.teenuseHind | currency : 'EUR' }}</td>
+            <td class="align-middle">{{ hinnaSoovitus[i] | currency : 'EUR' }}</td>
+            <td>
+                <button (click)="vahendaSoovitudHinda(i)"
+                    class="btn btn-danger btn-sm hinna-korrigeerimine">
+                    -1
+                </button>
+                <input type="text" size="1" [value]="soovitudHind[i]"
+                    (input)='muudaSoovitudHinda($event, i)' class="hinna-korrigeerimine">
+                <button (click)="suurendaSoovitudHinda(i)"
+                    class="btn btn-success btn-sm hinna-korrigeerimine">
+                    +1
+                </button>
+                <button (click)="muudaHinda(varuosa, soovitudHind[i], i)" class="btn btn-primary hinna-korrigeerimine">Muuda</button></td>
+        </tr>
+    </tbody>
+</table>

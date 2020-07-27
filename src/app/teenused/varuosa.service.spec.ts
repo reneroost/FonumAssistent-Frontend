@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Varuosa2Service } from './varuosa2.service';
+import { VaruosaService } from './varuosa.service';
 
-describe('Varuosa2Service', () => {
-  let service: Varuosa2Service;
+describe('VaruosaService', () => {
+  let service: VaruosaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Varuosa2Service);
+    service = TestBed.inject(VaruosaService);
   });
 
   it('should be created', () => {

@@ -7,33 +7,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { AvalehtComponent } from './komponendid/avaleht/avaleht.component';
-import { TooRegistreerimineComponent } from './komponendid/too-registreerimine/too-registreerimine.component';
 import { SeadedComponent } from './komponendid/seaded/seaded.component';
 import { VaruosadeHaldusComponent } from './komponendid/varuosade-haldus/varuosade-haldus.component';
 import { VaruosaLisamineComponent } from './komponendid/varuosade-haldus/varuosa-lisamine/varuosa-lisamine.component';
-import { VaruosadeKuvamineComponent } from './komponendid/varuosade-haldus/varuosade-kuvamine/varuosade-kuvamine.component';
 import { EsindusedComponent } from './komponendid/seaded/esindused/esindused.component';
 import { MuudSeadedComponent } from './komponendid/seaded/muud-seaded/muud-seaded.component';
 import { OtsakorralVaruosadComponent } from './komponendid/varuosade-haldus/otsakorral-varuosad/otsakorral-varuosad.component';
 import { YmberJaotamineComponent } from './komponendid/varuosade-haldus/ymber-jaotamine/ymber-jaotamine.component';
-import { VaruosadeKuvamine2Component } from './komponendid/varuosade-haldus/varuosade-kuvamine2/varuosade-kuvamine2.component';
-import { VaruosaService2 } from './teenused/varuosa2.service';
+import { VaruosaService } from './teenused/varuosa.service';
+import { ToodeHaldusComponent } from './komponendid/toode-haldus/toode-haldus.component';
+import { ToodeLogiComponent } from './komponendid/toode-haldus/toode-logi/toode-logi.component';
+import { TooRegistreerimineComponent } from './komponendid/toode-haldus/too-registreerimine/too-registreerimine.component';
+import { KorvOlekComponent } from './komponendid/toode-haldus/korv-olek/korv-olek.component';
+import { KorvDetailidComponent } from './komponendid/toode-haldus/korv-detailid/korv-detailid.component';
+import { VaruosadeKuvamineComponent } from './komponendid/varuosade-haldus/varuosade-kuvamine/varuosade-kuvamine.component';
+import { HinnaLangetusComponent } from './komponendid/varuosade-haldus/hinna-langetus/hinna-langetus.component';
+import { EnimkulunudVaruosadComponent } from './komponendid/varuosade-haldus/enimkulunud-varuosad/enimkulunud-varuosad.component';
 
 const marsruudid: Routes = [
-  { path: 'avaleht', component: AvalehtComponent },
-  { path: 'too-registreerimine', component: TooRegistreerimineComponent },
-  // { path: 'seaded', component: SeadedComponent },
   {
     path: 'varuosade-haldus',
     component: VaruosadeHaldusComponent, children: [
       {
         path: 'kuva-varuosad',
         component: VaruosadeKuvamineComponent
-      },
-      {
-        path: 'kuva-varuosad2',
-        component: VaruosadeKuvamine2Component
       },
       {
         path: 'otsakorral-varuosad',
@@ -44,12 +41,42 @@ const marsruudid: Routes = [
         component: YmberJaotamineComponent
       },
       {
+        path: 'hinna-langetus',
+        component: HinnaLangetusComponent
+      },
+      {
+        path: 'enimkulunud-varuosad',
+        component: EnimkulunudVaruosadComponent
+      },
+      {
         path: 'lisa-varuosa',
         component: VaruosaLisamineComponent
       },
       {
         path: '', 
         redirectTo: 'kuva-varuosad', 
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
+    path: 'toode-haldus',
+    component: ToodeHaldusComponent, children: [
+      {
+        path: 'too-registreerimine',
+        component: TooRegistreerimineComponent
+      },
+      {
+        path: 'korv-detailid',
+        component: KorvDetailidComponent
+      },
+      {
+        path: 'toode-logi',
+        component: ToodeLogiComponent
+      },
+      {
+        path: '', 
+        redirectTo: 'too-registreerimine', 
         pathMatch: 'full'
       }
     ]
@@ -77,17 +104,21 @@ const marsruudid: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AvalehtComponent,
     VaruosadeHaldusComponent,
-    TooRegistreerimineComponent,
     SeadedComponent,
     VaruosaLisamineComponent,
-    VaruosadeKuvamineComponent,
     EsindusedComponent,
     MuudSeadedComponent,
     OtsakorralVaruosadComponent,
     YmberJaotamineComponent,
-    VaruosadeKuvamine2Component,
+    VaruosadeKuvamineComponent,
+    ToodeHaldusComponent,
+    ToodeLogiComponent,
+    TooRegistreerimineComponent,
+    KorvOlekComponent,
+    KorvDetailidComponent,
+    HinnaLangetusComponent,
+    EnimkulunudVaruosadComponent,
   ],
   imports: [
     RouterModule.forRoot(marsruudid),
@@ -98,7 +129,7 @@ const marsruudid: Routes = [
     NgbModule
   ],
   providers: [
-    VaruosaService2
+    VaruosaService
   ],
   bootstrap: [AppComponent]
 })

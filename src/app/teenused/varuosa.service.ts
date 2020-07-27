@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class VaruosaService2 {
+export class VaruosaService {
 
   private baasUrl = 'http://localhost:8080/api/varuosad';
 
@@ -51,6 +51,14 @@ export class VaruosaService2 {
 
   private getVaruosad(otsingUrl: string) {
     return this.httpClient.get<SaaVastusVaruosa>(otsingUrl).pipe(map(vastus => vastus._embedded.varuosad));
+  }
+
+  muudaVaruosa(varuosa: Varuosa): Observable<Varuosa> {
+    return this.httpClient.put<Varuosa>("http://localhost:8080/muudaVaruosa", varuosa);
+  }
+
+  saaVaruosadEsindusePohjal(esinduseId: number) {
+    return this.httpClient.get<Varuosa[]>('http://localhost:8080/varuosadEsindusePohjal/'  + esinduseId);
   }
 }
 

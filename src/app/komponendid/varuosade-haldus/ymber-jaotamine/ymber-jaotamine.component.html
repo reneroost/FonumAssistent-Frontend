@@ -1,1 +1,36 @@
-<p>ymber-jaotamine works!</p>
+<div class="row mt-2">
+    <div class="form-group">
+        <label class="d-inline-block valiEsindusSilt">
+            <strong>
+                Vali esindus:
+            </strong>
+        </label>
+        <select class="form-control form-control-sm d-inline-block custom-select-lg"
+            style="width: auto;" #minuSelect (change)=tombaVaruosad(minuSelect.value)>
+            <option *ngFor="let valik of valikud" [value]="valik.id">{{ valik.nimi }}</option>
+        </select>
+    </div>
+</div>
+
+<table class="table table-striped table-borderless tabel-stiil">
+    <thead>
+        <tr>
+            <th>Hulk</th>
+            <th>Varuosa</th>
+            <th>Mudel</th>
+            <th>Kust</th>
+            <th>Kuhu</th>
+            <th>Saada</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let juhis of varuosaJaotused">
+            <td>{{ juhis.kogus }}</td>
+            <td>{{ juhis.varuosaLiik }}</td>
+            <td>{{ juhis.mudel }}</td>
+            <td><span [ngClass]="juhis.saatevEsindus">{{ juhis.saatevEsindusSeest }} </span></td>
+            <td><span [ngClass]="juhis.saavEsindus">{{ juhis.saavEsindusSisse }}</span></td>
+            <td><button class="btn btn-primary" (click)="saadaVaruosa(juhis)">Saada</button></td>
+        </tr>
+    </tbody>
+</table>

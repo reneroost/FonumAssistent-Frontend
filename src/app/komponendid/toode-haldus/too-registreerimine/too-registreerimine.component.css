@@ -10,6 +10,7 @@
     align-content: center;
     align-items: center;
     border: 1px solid #e3f2fd;
+    margin: 8px;
 }
 
 .item {
@@ -41,4 +42,38 @@ ul {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+thead {
+    background-color: #cef;
+}
+
+.tabel-stiil {
+    font-size: 18x;
+    font-family: Karla;
+    font-weight: 600;
+}
+
+.kokku{
+    background:#008ACD;
+    line-height:43px;
+    color:#fff;
+    border-radius:30px;
+    border:2px solid #cef;
+    float:left;
+    padding-left:17px
+}
+
+.kokku span{
+    display:inline-block;
+    background:#fff;
+    padding:0 13px;
+    color:#000;
+    border-top-right-radius:20px;
+    border-bottom-right-radius:20px;
+    margin-left:11px
+}
+
+.ostukaru-pilt {
+    height: 48px;
 }

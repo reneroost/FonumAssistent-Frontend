@@ -1,5 +1,12 @@
 export class YksikVaartused {
     id: string;
-    piirPehme: number;
+    piirLeebe: number;
     piirKriitiline: number;
+    piirVanus: number;
+
+    constructor(piirLeebe: number, piirKriitiline: number) {
+        this.id = 'X';
+        this.piirLeebe = piirLeebe;
+        this.piirKriitiline = piirKriitiline;
+    }
 }

@@ -5,3 +5,13 @@
 #leebelt-otsakorral-pealkiri {
     color: chocolate;
 }
+
+thead {
+    background-color: #cef;
+}
+
+.tabel-stiil {
+    font-size: 18x;
+    font-family: Karla;
+    font-weight: 600;
+}

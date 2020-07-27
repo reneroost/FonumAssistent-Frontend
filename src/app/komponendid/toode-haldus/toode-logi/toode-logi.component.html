@@ -1,0 +1,21 @@
+<table class="table table-striped table-borderless tabel-stiil col-xl-10">
+    <thead>
+        <tr>
+            <th>Mudel</th>
+            <th>Tehtud töö</th>
+            <th>Kogus</th>
+            <th>Tasutud summa</th>
+            <th>Töö reg. aeg</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let tehtudTooLogi of tehtudToodeLogid">
+            <td class="align-middle">{{ tehtudTooLogi.mudel }}</td>
+            <td class="align-middle">{{ tehtudTooLogi.varuosaLiikTeenus }}</td>
+            <td class="align-middle">{{ tehtudTooLogi.kogus }}</td>
+            <td class="align-middle">{{ tehtudTooLogi.teenuseHind | currency: 'EUR' }}</td>
+            <td class="align-middle">{{ tehtudTooLogi.tehtudTooKpKell }}</td>
+        </tr>
+    </tbody>
+</table>

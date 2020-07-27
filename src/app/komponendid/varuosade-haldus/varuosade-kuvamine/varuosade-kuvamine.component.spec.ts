@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VaruosadeKuvamineComponent } from './varuosade-kuvamine.component';
+import { VaruosadeKuvamine2Component } from './varuosade-kuvamine2.component';
 
-describe('VaruosadeKuvamineComponent', () => {
-  let component: VaruosadeKuvamineComponent;
-  let fixture: ComponentFixture<VaruosadeKuvamineComponent>;
+describe('VaruosadeKuvamine2Component', () => {
+  let component: VaruosadeKuvamine2Component;
+  let fixture: ComponentFixture<VaruosadeKuvamine2Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VaruosadeKuvamineComponent ]
+      declarations: [ VaruosadeKuvamine2Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VaruosadeKuvamineComponent);
+    fixture = TestBed.createComponent(VaruosadeKuvamine2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

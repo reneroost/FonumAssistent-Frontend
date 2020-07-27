@@ -1,0 +1,90 @@
+<div class="section-content section-content-p30">
+    <div class="container-fluid">
+        <div *ngIf="korvArtiklid.length > 0">
+            <table class="table table-bordered">
+                <tr>
+                    <th width="20%">Mudel</th>
+                    <th width="15%">Vahetatud osa</th>
+                    <th width="15%">Artikli omahind</th>
+                    <th width="15%">Teenuse hind</th>
+                    <th width="35%">Kogus ja vahesumma</th>
+                </tr>
+                <tr *ngFor="let ajutineKorviArtikkel of korvArtiklid">
+                    <td>
+                        {{ ajutineKorviArtikkel.tootja }} {{ ajutineKorviArtikkel.mudel }}
+                    </td>
+                    <td>
+                        {{ ajutineKorviArtikkel.varuosaLiik }}
+                    </td>
+                    <td>
+                        {{ ajutineKorviArtikkel.artikliHind | currency: 'EUR' }}
+                    </td>
+                    <td>
+                        {{ ajutineKorviArtikkel.teenuseHind | currency: 'EUR' }}
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Kogus:</label>
+                            </div>
+                            <div class="col-2">
+                                <button (click)="vahendaKogust(ajutineKorviArtikkel)"class="btn btn-danger btn-sm">
+                                    -1 
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <input type="text" size="1"
+                                    [value]='ajutineKorviArtikkel.kogus'
+                                    (input)='muudaKogustKasitsi($event, ajutineKorviArtikkel)'>
+                            </div>
+                            <div class="col-2">
+                                <button (click)="suurendaKogust(ajutineKorviArtikkel)" class="btn btn-success btn-sm">
+                                    +1
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Vahesumma:</label>
+                            </div>
+                            <div class="col-2">
+                                <button (click)="vahendaVahesummat(ajutineKorviArtikkel)" class="btn btn-danger btn-sm" >
+                                    -10
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <input type="text" size="1"
+                                [value]='ajutineKorviArtikkel.vaheSumma'
+                                (input)='muudaVahesummatKasitsi($event, ajutineKorviArtikkel)'>                            
+                            </div>
+                            <div class="col-2">
+                                <button (click)="suurendaVahesummat(ajutineKorviArtikkel)" class="btn btn-success btn-sm">
+                                    +10
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="font-weight: bold">
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Kogus: {{ kogus }}</p>
+                                <p>Varuosad: {{ summaVaruosad | currency: 'EUR' }}</p>
+                                <p>Summa: {{ summaTehing | currency: 'EUR' }}</p>
+                            </div>
+                            <div class="col-6 kinnita-nupp">
+                                <button routerLink="../toode-logi" (click)="kinnitaTood()" class="btn btn-primary">Kinnita</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div *ngIf="korvArtiklid.length == 0" class="alert alert-warning" role="alert">
+            Ühtegi tööd pole valitud!
+        </div>
+    </div>
+</div>

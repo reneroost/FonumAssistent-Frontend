@@ -1,0 +1,23 @@
+.kokku{
+    background:#008ACD;
+    line-height:43px;
+    color:#fff;
+    border-radius:30px;
+    border:2px solid #cef;
+    float:left;
+    padding-left:17px
+}
+
+.kokku span{
+    display:inline-block;
+    background:#fff;
+    padding:0 13px;
+    color:#000;
+    border-top-right-radius:20px;
+    border-bottom-right-radius:20px;
+    margin-left:11px
+}
+
+.ostukaru-pilt {
+    height: 48px;
+}

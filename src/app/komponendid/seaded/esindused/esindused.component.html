@@ -30,7 +30,7 @@
     </button>
     <ng-container *ngIf="naita">
         <div id="lisaEsindusVorm">
-            <form #postForm="ngForm" (ngSubmit)="onLooUusEsindus(postForm.value)">
+            <form #postForm="ngForm" (ngSubmit)="looUusEsindus(postForm.value)">
                 <div class="form-group row">
                     <label for="nimi" class="control-label col-sm-3">Nimi</label>
                     <input type="text" class="form-control col-sm-9" id="mudel" required ngModel

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AvalehtComponent } from './avaleht.component';
+import { HinnaLangetusComponent } from './hinna-langetus.component';
 
-describe('AvalehtComponent', () => {
-  let component: AvalehtComponent;
-  let fixture: ComponentFixture<AvalehtComponent>;
+describe('HinnaLangetusComponent', () => {
+  let component: HinnaLangetusComponent;
+  let fixture: ComponentFixture<HinnaLangetusComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AvalehtComponent ]
+      declarations: [ HinnaLangetusComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AvalehtComponent);
+    fixture = TestBed.createComponent(HinnaLangetusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

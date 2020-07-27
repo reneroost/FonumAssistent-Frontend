@@ -4,6 +4,9 @@ import { Varuosa } from 'src/app/mudel/varuosa';
 import { map } from 'rxjs/operators';
 import { YksikVaartused } from 'src/app/mudel/yksik-vaartused';
 import { Esindus } from 'src/app/mudel/esindus';
+import { VaruosadOtsakorralService } from 'src/app/teenused/varuosad-otsakorral.service';
+import { EsindusService } from 'src/app/teenused/esindus.service';
+import { YksikVaartusedService } from 'src/app/teenused/yksik-vaartused.service';
 
 @Component({
   selector: 'app-otsakorral-varuosad',
@@ -17,76 +20,94 @@ export class OtsakorralVaruosadComponent implements OnInit {
   yksikVaartused: YksikVaartused[];
   esindused: Esindus[];
 
-  constructor(private http: HttpClient) { }
+  piirLeebe: number;
+  piirKriitiline: number;
+
+  constructor(private varuosadOtsakorralTeenus: VaruosadOtsakorralService,
+              private yksikVaartusedTeenus: YksikVaartusedService,
+              private esindusTeenus: EsindusService) { }
 
   ngOnInit(): void {
-    this.saaKriitiliseltOtsakorralVaruosad();
-    this.saaLeebeltOtsakorralVaruosad();
-    this.saaYksikVaartused();
+    this.saaPiiridJaOtsakorralVaruosad();
     this.saaEsindused();
   }
 
-  saaKriitiliseltOtsakorralVaruosad() {
-    this.http
-    .get<{[key: string]: Varuosa}>('http://localhost:8080/saaKriitiliseltOtsakorralVaruosad')
-    .pipe(map(vastuseAndmed => {
-      const varuosadeList: Varuosa[] = [];
-      for(const key in vastuseAndmed) {
-        if (vastuseAndmed.hasOwnProperty(key)) {
-          varuosadeList.push({ ...vastuseAndmed[key], id: key});
-        }
-      }
-      return varuosadeList;
-    })).subscribe(andmed => {
-      this.kriitiliseltOtsakorralVaruosad = andmed;
+  muudaPiirmaaraKriitiline(event) {
+    if (this.piirLeebe <= Number(event.target.value)) {
+      this.piirLeebe = Number(event.target.value) + 1;
+    }
+    this.piirKriitiline = Number(event.target.value);
+    this.muudaYksikVaartused();
+    this.saaOtsakorralVaruosad();
+  }
+
+  suurendaPiirmaaraKriitiline() {
+    if (this.piirLeebe <= this.piirKriitiline + 1) {
+      this.piirLeebe++;
+    }
+    this.piirKriitiline++;
+    this.muudaYksikVaartused();
+    this.saaOtsakorralVaruosad();
+  }
+
+  vahendaPiirmaaraKriitiline() {
+    if (this.piirKriitiline > 1) {
+      this.piirKriitiline--;
+    }
+    this.muudaYksikVaartused();
+    this.saaOtsakorralVaruosad();
+  }
+
+  muudaPiirmaaraLeebe(event) {
+    if (this.piirKriitiline >= Number(event.target.value)) {
+      this.piirKriitiline = Number(event.target.value) - 1;
+    }
+    this.piirLeebe = Number(event.target.value);
+    this.muudaYksikVaartused();
+    this.saaOtsakorralVaruosad();
+  }
+
+  suurendaPiirmaaraLeebe() {
+    this.piirLeebe++;
+    this.muudaYksikVaartused();
+    this.saaOtsakorralVaruosad();
+  }
+
+  vahendaPiirmaaraLeebe() {
+    if (this.piirKriitiline >= this.piirLeebe - 1) {
+      this.piirKriitiline--;
+    }
+    if (this.piirLeebe > 1) {
+      this.piirLeebe--;
+    }
+    this.muudaYksikVaartused();
+    this.saaOtsakorralVaruosad();
+  }
+
+  muudaYksikVaartused() {
+    this.yksikVaartusedTeenus.salvestaYksikVaartused(new YksikVaartused(this.piirLeebe, this.piirKriitiline));
+  }
+
+  saaOtsakorralVaruosad() {
+    this.varuosadOtsakorralTeenus.tombaOtsakorralVaruosad(this.piirKriitiline + 1, this.piirLeebe).subscribe(varuosad => {
+      this.leebeltOtsakorralVaruosad = varuosad;
+    });
+    this.varuosadOtsakorralTeenus.tombaOtsakorralVaruosad(0, this.piirKriitiline).subscribe(varuosad => {
+      this.kriitiliseltOtsakorralVaruosad = varuosad;
     });
   }
 
-  saaLeebeltOtsakorralVaruosad() {
-    this.http
-    .get<{[key: string]: Varuosa}>('http://localhost:8080/saaLeebeltOtsakorralVaruosad')
-    .pipe(map(vastuseAndmed => {
-      const varuosadeList: Varuosa[] = [];
-      for(const key in vastuseAndmed) {
-        if (vastuseAndmed.hasOwnProperty(key)) {
-          varuosadeList.push({ ...vastuseAndmed[key], id: key});
-        }
-      }
-      return varuosadeList;
-    })).subscribe(andmed => {
-      this.leebeltOtsakorralVaruosad = andmed;
-    });
-  }
-
-  saaYksikVaartused() {
-    this.http
-    .get<{[key: string]: YksikVaartused}>('http://localhost:8080/yksikvaartused')
-    .pipe(map(vastuseAndmed => {
-      const yksikVaartusedList: YksikVaartused[] = [];
-      for(const key in vastuseAndmed) {
-        if (vastuseAndmed.hasOwnProperty(key)) {
-          yksikVaartusedList.push({ ...vastuseAndmed[key], id: key});
-        }
-      }
-      return yksikVaartusedList;
-    })).subscribe(andmed => {
-      this.yksikVaartused = andmed;
+  saaPiiridJaOtsakorralVaruosad() {
+    this.yksikVaartusedTeenus.tombaYksikVaartused().subscribe(vaartused => {
+      this.piirKriitiline = vaartused[0].piirKriitiline;
+      this.piirLeebe = vaartused[0].piirLeebe;
+      this.saaOtsakorralVaruosad();
     });
   }
 
   saaEsindused() {
-    this.http
-    .get<{[key: string]: Esindus}>('http://localhost:8080/esindused')
-    .pipe(map(vastuseAndmed => {
-      const esindusteList: Esindus[] = [];
-      for (const key in vastuseAndmed) {
-        if (vastuseAndmed.hasOwnProperty(key)) {
-          esindusteList.push({ ...vastuseAndmed[key], id: key});
-        }
-      }
-      return esindusteList;
-    })).subscribe(andmed => {
-      this.esindused = andmed;
+    this.esindusTeenus.tombaEsindused().subscribe(esindused => {
+      this.esindused = esindused;
     });
   }
 

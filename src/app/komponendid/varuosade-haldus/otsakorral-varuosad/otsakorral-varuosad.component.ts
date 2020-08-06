@@ -42,7 +42,7 @@ export class OtsakorralVaruosadComponent implements OnInit {
   }
 
   suurendaPiirmaaraKriitiline() {
-    if (this.piirLeebe <= this.piirKriitiline + 1) {
+    if (this.piirLeebe === this.piirKriitiline + 1) {
       this.piirLeebe++;
     }
     this.piirKriitiline++;
@@ -74,11 +74,11 @@ export class OtsakorralVaruosadComponent implements OnInit {
   }
 
   vahendaPiirmaaraLeebe() {
-    if (this.piirKriitiline >= this.piirLeebe - 1) {
-      this.piirKriitiline--;
-    }
     if (this.piirLeebe > 1) {
       this.piirLeebe--;
+      if (this.piirKriitiline === this.piirLeebe) {
+        this.piirKriitiline--;
+      }
     }
     this.muudaYksikVaartused();
     this.saaOtsakorralVaruosad();

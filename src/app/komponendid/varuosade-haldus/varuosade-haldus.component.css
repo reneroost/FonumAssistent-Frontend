@@ -1,6 +1,6 @@
 .sidenav {
     height: 100%;
-    width: 200px;
+    width: 197px;
     position: fixed;
     z-index: 1;
     background-color: black;
@@ -23,7 +23,7 @@
 }
 
 .main {
-    margin-left: 200px;
+    margin-left: 197px;
     padding: 32px;
 }
 

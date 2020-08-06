@@ -7,47 +7,27 @@
         </h3>
     </div>
     <div class="col-sm-5">
-        <div class="float-right">
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-sm-3">
-                    <label>Muuda vanusepiiri:</label>
-                </div>
-                <div class="col-sm-2">
-                    <button (click)="vahendaPerioodi()" class="btn btn-danger btn-sm">
-                        -1
-                    </button>
-                </div>
-                <div class="col-sm-2">
-                    <input type="text" size="1" [value]='periood'
-                        (input)='muudaPerioodi($event)'>
-                </div>
-                <div class="col-sm-2">
-                    <button (click)="suurendaPerioodi()" class="btn btn-success btn-sm">
-                        +1
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-sm-3">
-                    <label>Muuda miinimumkogust:</label>
-                </div>
-                <div class="col-sm-2">
-                    <button (click)="vahendaMinKogust()" class="btn btn-danger btn-sm">
-                        -1
-                    </button>
-                </div>
-                <div class="col-sm-2">
-                    <input type="text" size="1" [value]='minKogus'
-                        (input)='muudaMinKogust($event)'>
-                </div>
-                <div class="col-sm-2">
-                    <button (click)="suurendaMinKogust()" class="btn btn-success btn-sm">
-                        +1
-                    </button>
-                </div>
-            </div>
+        <div class="parem-margin d-flex justify-content-end">
+            <label>Muuda vanusepiiri:</label>
+            <button (click)="vahendaPerioodi()" class="btn btn-danger btn-sm muuda-piiri">
+                -1
+            </button>
+            <input class="muuda-piiri" type="text" size="1" [value]='periood'
+                (input)='muudaPerioodi($event)'>
+            <button (click)="suurendaPerioodi()" class="btn btn-success btn-sm muuda-piiri">
+                +1
+            </button>
+        </div>
+        <div class="parem-margin d-flex justify-content-end">
+            <label>Muuda kriitilist piirmäära:</label>
+            <button (click)="vahendaMinKogust()" class="btn btn-danger btn-sm muuda-piiri">
+                -1
+            </button>
+            <input class="muuda-piiri" type="text" size="1" [value]='minKogus'
+                (input)='muudaMinKogust($event)'>
+            <button (click)="suurendaMinKogust()" class="btn btn-success btn-sm muuda-piiri">
+                +1
+            </button>
         </div>
     </div>
 </div>
@@ -56,7 +36,7 @@
     <thead>
         <tr>
             <th>Mudel</th>
-            <th>VaruosaLiik</th>
+            <th>Varuosa liik</th>
             <th>Kogus</th>
         </tr>
     </thead>

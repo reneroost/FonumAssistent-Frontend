@@ -1,3 +1,15 @@
 .hinna-korrigeerimine {
     margin: 8px;
 }
+
+.muuda-piiri {
+    margin: 4px;
+}
+
+label {
+    margin: 8px 0px;
+}
+
+.parem-margin {
+    margin-right: 0px;
+}
